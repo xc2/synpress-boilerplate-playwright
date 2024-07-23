@@ -1,0 +1,17 @@
+{
+  "packageManager": "pnpm@9.6.0",
+  "scripts": {
+    "test": "playwright test",
+    "prepare": "pnpm --package husky@9.1.1 dlx husky; playwright install"
+  },
+  "nano-staged": {
+    "*.{js,ts}": "biome check --write --diagnostic-level=error --no-errors-on-unmatched"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
+    "@playwright/test": "^1.45.3",
+    "@synthetixio/synpress": "^3.7.3",
+    "@types/node": "^20.14.11",
+    "dotenv": "^16.4.5"
+  }
+}
