@@ -1,26 +1,21 @@
-name: Release
+name: Create Provenance
 on:
   workflow_dispatch:
-  release:
-    types:
-      - published
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
-  build:
-    uses: xc2/ghwf/.github/workflows/pnpm-artifact.yaml@main
-    with:
-      script: deploy
-      artifact-path: "*.tgz"
-      artifact-name: pkg
-
-  update-release:
-    needs: build
-    uses: xc2/ghwf/.github/workflows/update-release.yaml@main
-    if: startsWith(github.ref, 'refs/tags/')
+  provenance:
+    runs-on: ubuntu-latest
     permissions:
-      contents: write
       id-token: write
-    with:
-      cache-key: ${{ needs.build.outputs.cache-key }}
-      cache-path: ${{ needs.build.outputs.cache-path }}
-      provenance: true
+      attestations: write
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v4
+      - run: npm pack
+      - uses: actions/attest-build-provenance@v1
+        with:
+          subject-path: "*.tgz"

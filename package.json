@@ -4,7 +4,7 @@
   "private": true,
   "packageManager": "pnpm@9.6.0",
   "scripts": {
-    "test": "playwright test",
+    "test": "NODE_ENV=development playwright test",
     "prepare": "pnpm --package husky@9.1.1 dlx husky; playwright install",
     "deploy": "npm pack"
   },
