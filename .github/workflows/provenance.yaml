@@ -19,6 +19,7 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/')
     permissions:
       contents: write
+      id-token: write
     with:
       cache-key: ${{ needs.build.outputs.cache-key }}
       cache-path: ${{ needs.build.outputs.cache-path }}
