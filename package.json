@@ -1,8 +1,12 @@
 {
+  "name": "synpress-boilerplate-playwright",
+  "version": "0.0.0-PLACEHOLDER",
+  "private": true,
   "packageManager": "pnpm@9.6.0",
   "scripts": {
     "test": "playwright test",
-    "prepare": "pnpm --package husky@9.1.1 dlx husky; playwright install"
+    "prepare": "pnpm --package husky@9.1.1 dlx husky; playwright install",
+    "deploy": "npm pack"
   },
   "nano-staged": {
     "*.{js,ts}": "biome check --write --diagnostic-level=error --no-errors-on-unmatched"
@@ -13,5 +17,15 @@
     "@synthetixio/synpress": "^3.7.3",
     "@types/node": "^20.14.11",
     "dotenv": "^16.4.5"
-  }
+  },
+  "files": [
+    "/.env",
+    "/.env.development",
+    "/.gitignore",
+    "/*.json",
+    "/*.ts",
+    "/*.yaml",
+    "/lib",
+    "/tests"
+  ]
 }
